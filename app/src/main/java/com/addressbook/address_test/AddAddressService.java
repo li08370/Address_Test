@@ -2,10 +2,7 @@ package com.addressbook.address_test;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Binder;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.IBinder;
+import android.os.*;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +19,10 @@ import java.util.ArrayList;
         static ArrayList<Address> storage  = new ArrayList<>();
         private final IBinder mBinder = new AddressBinder();
         Address address;
+
+        public static <T extends Parcelable> void addAddress(T address) {
+        storage.add((Address) address);
+        }
 
         public class AddressBinder extends Binder {
             AddAddressService getService() {

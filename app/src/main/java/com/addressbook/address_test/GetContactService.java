@@ -56,7 +56,6 @@ import java.util.ArrayList;
             return contactFromJSON(contactJSON);
         }
 
-
         private Address contactFromJSON(JSONObject jsonObject) throws JSONException {
             return new Address(
                     jsonObject.getString("firstname"),

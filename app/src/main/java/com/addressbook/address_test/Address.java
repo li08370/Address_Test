@@ -2,13 +2,9 @@ package com.addressbook.address_test;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.addressbook.address_test.dummy.DummyContent;
+import java.io.Serializable;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Address implements Parcelable {
-    public static final List<Address> CONTACTS = new ArrayList<>();
+public class Address implements Comparable<Address>, Serializable {
     String first_name, last_name, phone_number;
     //int phone_number;
     boolean editStatus;
@@ -55,77 +51,21 @@ public class Address implements Parcelable {
             if (this.getLast_name().equalsIgnoreCase(otherAddress.getLast_name())){
                 lName = true;
             }
-            if(this.getPhone_number() == otherAddress.getPhone_number()){
+            if(this.getPhone_number().equalsIgnoreCase(otherAddress.getPhone_number())){
                 phoneNumber = true;
             }
         }
         return fName || lName || phoneNumber;
     }
 
-    public boolean equal(Object obj){
-        if(obj instanceof Address){
-            Address otherAddress = (Address) obj;
-            if (this.getLast_name().equalsIgnoreCase(otherAddress.getLast_name())){
-                lName = true;
-            }
-            if(this.getPhone_number() == otherAddress.getPhone_number()){
-                phoneNumber = true;
-            }
-        }
-        return lName || phoneNumber;
-    }
-
-
     public int compareTo(Address a){
         return (first_name.compareTo(a.getFirst_name()));
     }
 
-    Address(String first_name, String last_name){
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.phone_number = "-1";
-    }
-    Address(String first_name){
-        this.first_name = first_name;
-        this.last_name = "empty";
-        this.phone_number = "-1";
-        editStatus = false;
-    }
     Address(String first_name, String last_name, String phone_number){
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone_number = phone_number;
         editStatus = false;
-    }
-
-    public Address(Parcel in){
-        String[] data = new String[3];
-
-        in.readStringArray(data);
-        // the order needs to be the same as in writeToParcel() method
-        this.first_name = data[0];
-        this.last_name = data[1];
-        this.phone_number = data[2];
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-        public Address createFromParcel(Parcel in) {
-            return new Address(in);
-        }
-
-        public Address[] newArray(int size) {
-            return new Address[size];
-        }
-    };
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[] {
-                this.first_name,
-                this.last_name,
-                this.phone_number});
     }
 }

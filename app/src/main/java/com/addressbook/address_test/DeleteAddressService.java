@@ -8,13 +8,13 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-    public class DeleteService extends Service {
+    public class DeleteAddressService extends Service {
         static ArrayList<Address> rem = AddAddressService.getStorage();
         private final IBinder mBinder = new AddressBinder();
 
         public class AddressBinder extends Binder {
-            DeleteService getService(){
-                return DeleteService.this;
+            DeleteAddressService getService(){
+                return DeleteAddressService.this;
             }
         }
         @Nullable

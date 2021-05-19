@@ -61,8 +61,8 @@ public class Address implements Comparable<Address>, Serializable {
     Address(String first_name, String last_name, String phone_number){
         this.first_name = first_name;
         this.last_name = last_name;
-        this.phone_number = "empty";
-        this.address = address;
+        this.phone_number = phone_number;
+        this.address = "empty";
     }
 
     Address(String first_name, String last_name, String phone_number, String address){

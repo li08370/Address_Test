@@ -1,6 +1,5 @@
 package com.addressbook.address_test;
 
-
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -10,10 +9,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-    public class GetContactService {
+    public class GetContactService{
         public ArrayList<Address> getContactsFromDatabase() {
             Client client = Client.create();
-
             WebResource webResource = client.resource(Domain.getDomain()+ "/rest/listContacts");
 
             ClientResponse response = webResource.type("application/json").get(ClientResponse.class);
@@ -60,10 +58,9 @@ import java.util.ArrayList;
             return new Address(
                     jsonObject.getString("firstname"),
                     jsonObject.getString("lastname"),
-                    jsonObject.getString("phonenumber"));
-                   // jsonObject.getString("address"),
+                    jsonObject.getString("phonenumber"),
+                    jsonObject.getString("address"));
                   //  jsonObject.getString("id"));
         }
-
     }
 

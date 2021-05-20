@@ -53,9 +53,6 @@ import java.util.ArrayList;
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatus());
             }
-
-            //storage.add(a);
-            //storage.sort(Address::compareTo);
         }
 
         public static Address getAddress(int position){

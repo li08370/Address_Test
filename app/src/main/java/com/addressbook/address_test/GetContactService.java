@@ -60,7 +60,6 @@ import java.util.ArrayList;
                     jsonObject.getString("lastname"),
                     jsonObject.getString("phonenumber"),
                     jsonObject.getString("address"));
-                  //  jsonObject.getString("id"));
         }
     }
 

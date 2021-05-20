@@ -1,5 +1,7 @@
 package com.addressbook.address_test;
 
+import android.app.Activity;
+import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,36 +9,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import org.w3c.dom.Text;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private final List<Address> mValues;
-
+    private List<Address> contacts;
     public CustomAdapter(List<Address> contacts) {
-        mValues = contacts;
+        this.contacts = contacts;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_address, parent, false);
+                .inflate(R.layout.fragment_address_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.contact = mValues.get(position);
-        holder.mfName.setText(mValues.get(position).first_name);
-        holder.mlName.setText(mValues.get(position).last_name);
-        holder.mpNumber.setText(mValues.get(position).phone_number);
+        holder.contact = contacts.get(position);
+        holder.mfName.setText(contacts.get(position).first_name);
+        holder.mlName.setText(contacts.get(position).last_name);
+        holder.mpNumber.setText(contacts.get(position).phone_number);
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return contacts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

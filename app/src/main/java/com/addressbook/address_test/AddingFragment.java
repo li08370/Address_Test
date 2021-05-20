@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class AddingFragment extends Fragment {
 EditText finput, linput, pinput;
 AddAddressService service;
-ArrayList address;
+
 boolean isBound;
     @Override
     public View onCreateView(
@@ -30,19 +30,6 @@ boolean isBound;
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final GetContactService getContactsService = new GetContactService();
-        Thread getContactsThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                address = getContactsService.getContactsFromDatabase();
-            }
-        });
-        try {
-            getContactsThread.start();
-            getContactsThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         finput = view.findViewById(R.id.fNameInput);
         linput = view.findViewById(R.id.lNameInput);
         pinput = view.findViewById(R.id.pNumberInput);

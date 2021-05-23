@@ -53,11 +53,9 @@ public class Address implements Comparable<Address>, Serializable {
         return false;
     }
 
-
     public int compareTo(Address a){
         return (first_name.compareTo(a.getFirst_name()));
     }
-
     Address(String first_name, String last_name, String phone_number){
         this.first_name = first_name;
         this.last_name = last_name;

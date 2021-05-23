@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
 import java.util.ArrayList;
 
 public class AddingFragment extends Fragment {

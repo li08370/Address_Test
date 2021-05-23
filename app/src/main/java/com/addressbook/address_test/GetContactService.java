@@ -1,5 +1,4 @@
 package com.addressbook.address_test;
-
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;

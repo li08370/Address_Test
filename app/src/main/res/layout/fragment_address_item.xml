@@ -22,7 +22,15 @@
             android:layout_margin="@dimen/text_margin"
             android:textAppearance="?attr/textAppearanceListItem"/>
     <Button
-            android:text="Button"
+            android:text="@string/edit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button" android:layout_weight="1"/>
+            android:layout_height="wrap_content" android:id="@+id/editButton" android:layout_weight="1"/>
+    <Button
+            android:text="@string/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/deleteButton" android:layout_weight="1"/>
+    <Button
+            android:text="@string/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/addButton" android:layout_weight="1"/>
 </LinearLayout>

@@ -15,19 +15,12 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-/**
- * A fragment representing a list of Items.
- */
 public class AddressFragment extends Fragment {
    private ArrayList<Address> contacts;
    Activity mContext;
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public AddressFragment() {
     }
 

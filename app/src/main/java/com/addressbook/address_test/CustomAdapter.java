@@ -1,7 +1,9 @@
 package com.addressbook.address_test;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Button;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +46,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public final TextView mfName;
         public final TextView mlName;
         public final TextView mpNumber;
+        public Button mEdit;
+        public Button mDelete;
         public Address contact;
+        public Button mAdd;
 
         public ViewHolder(View view) {
             super(view);
@@ -52,6 +57,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             mfName = (TextView) view.findViewById(R.id.contact_fName);
             mlName = (TextView) view.findViewById(R.id.contact_lName);
             mpNumber = (TextView) view.findViewById(R.id.contact_pNumber);
+            mEdit = (Button) view.findViewById(R.id.editButton);
+            mDelete = (Button) view.findViewById(R.id.deleteButton);
+            mAdd =(Button) view.findViewById(R.id.addButton);
         }
 
         @Override

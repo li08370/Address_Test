@@ -1,70 +1,76 @@
 package com.addressbook.address_test;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.widget.Button;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class CustomAdapter extends ArrayAdapter<Address> {
+    private ArrayList<Address> contacts;
+    Activity mContext;
 
-    private List<Address> contacts;
-    public CustomAdapter(List<Address> contacts) {
+    public CustomAdapter(Activity context, ArrayList<Address> contacts) {
+        super(context, R.layout.address_list, contacts);
         this.contacts = contacts;
+        this.mContext = context;
     }
+
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_address_item, parent, false);
-        return new ViewHolder(view);
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater= mContext.getLayoutInflater();
+        View view = inflater.inflate(R.layout.address_list, null,true);
 
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.contact = contacts.get(position);
-        holder.mfName.setText(contacts.get(position).first_name);
-        holder.mlName.setText(contacts.get(position).last_name);
-        holder.mpNumber.setText(contacts.get(position).phone_number);
-    }
+        TextView firstNameView = (TextView) view.findViewById(R.id.conatct_fName);
+        TextView lastNameView = (TextView) view.findViewById(R.id.contact_lName);
+        TextView phoneNumberView = (TextView) view.findViewById(R.id.conatct_pNumber);
+        TextView addressView = (TextView) view.findViewById(R.id.contact_address);
+        Button editButton = (Button) view.findViewById(R.id.editButton);
+        //Button removeButton = (Button) view.findViewById(R.id.removeButton);
 
-    @Override
-    public int getItemCount() {
-        return contacts.size();
-    }
+        final Address contact = contacts.get(position);
+        firstNameView.setText(contact.getFirst_name());
+        lastNameView.setText(contact.getLast_name());
+        phoneNumberView.setText(contact.getPhone_number());
+        addressView.setText(contact.getAddress());
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mfName;
-        public final TextView mlName;
-        public final TextView mpNumber;
-        public Button mEdit;
-        public Button mDelete;
-        public Address contact;
-        public Button mAdd;
+        //Button Performance
+       /* removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread removeThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        RemoveContactService remove = new RemoveContactService(contact);
+                        remove.removeContact();
+                    }
+                });
 
-        public ViewHolder(View view) {
-            super(view);
-            mView = view;
-            mfName = (TextView) view.findViewById(R.id.contact_fName);
-            mlName = (TextView) view.findViewById(R.id.contact_lName);
-            mpNumber = (TextView) view.findViewById(R.id.contact_pNumber);
-            mEdit = (Button) view.findViewById(R.id.editButton);
-            mDelete = (Button) view.findViewById(R.id.deleteButton);
-            mAdd =(Button) view.findViewById(R.id.addButton);
-        }
+                //Replace with better solution later
+                try {
+                    removeThread.start();
+                    removeThread.join();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+                mContext.recreate();
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mpNumber.getText() + "'";
-        }
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext.getApplicationContext(), EditContactActivity.class);
+                i.putExtra("Contact", contact);
+                mContext.startActivity(i);
+            }
+        });*/
+        return view;
     }
 }

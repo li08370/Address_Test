@@ -12,14 +12,11 @@ import java.util.ArrayList;
         public ArrayList<Address> getContactsFromDatabase() {
             Client client = Client.create();
             WebResource webResource = client.resource(Domain.getDomain()+ "/rest/listContacts");
-
             ClientResponse response = webResource.type("application/json").get(ClientResponse.class);
-
             if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatus());
             }
-
             String json = response.getEntity(String.class);
             try {
                 return StringJSONToContacts(json);
